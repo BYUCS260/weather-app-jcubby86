@@ -4,15 +4,20 @@ function addCurrentWeather(json) {
   const weatherResults = document.getElementById("weatherResults");
   weatherResults.textContent = '';
 
+  weatherResults.appendChild(document.createElement("hr"));
+
   const inCity = weatherResults.appendChild(document.createElement("h2"));
   inCity.textContent = 'Weather in ' + json.name;
 
-  const temp = weatherResults.appendChild(document.createElement("h3"));
-  temp.innerHTML = json.main.temp + ' &deg;F';
+  const item = weatherResults.appendChild(document.createElement("div"));
+  item.setAttribute("class", "item");
+
+  const temp = item.appendChild(document.createElement("h4"));
+  temp.innerHTML = "Temperature: " + json.main.temp + ' &deg;F';
 
   let results = '';
   for (let i = 0; i < json.weather.length; i++) {
-    const image = weatherResults.appendChild(document.createElement("img"));
+    const image = item.appendChild(document.createElement("img"));
     image.setAttribute('src', 'http://openweathermap.org/img/w/' + json.weather[i].icon + '.png');
 
     results += json.weather[i].description
@@ -21,7 +26,7 @@ function addCurrentWeather(json) {
     }
   }
 
-  const p = weatherResults.appendChild(document.createElement("p"));
+  const p = item.appendChild(document.createElement("p"));
   p.textContent = results;
 }
 
@@ -29,17 +34,22 @@ function addForecast(json){
   const forecastResults = document.getElementById("forecastResults");
   forecastResults.textContent = '';
 
-  const city = weatherResults.appendChild(document.createElement("h2"));
+  const city = forecastResults.appendChild(document.createElement("h2"));
   city.textContent = '15-day Forecast';
 
+  const section = forecastResults.appendChild(document.createElement("div"));
+  section.setAttribute("class", "section");
   for (let i=0; i < json.list.length; i++) {
-    const h2 = forecastResults.appendChild(document.createElement("h3"));
-    h2.textContent = moment(json.list[i].dt_txt).format('MMMM Do YYYY, h:mm a');
+    const item = section.appendChild(document.createElement("div"));
+    item.setAttribute("class", "item");
 
-    const p = forecastResults.appendChild(document.createElement("p"));
-    p.textContent = "Temperature: " + json.list[i].main.temp;
+    const h2 = item.appendChild(document.createElement("h3"));
+    h2.textContent = moment(json.list[i].dt_txt).format('ddd, MMM D, h:mma');
 
-    const img = forecastResults.appendChild(document.createElement("img"));
+    const p = item.appendChild(document.createElement("h5"));
+    p.innerHTML = json.list[i].main.temp + ' &deg;F';
+
+    const img = item.appendChild(document.createElement("img"));
     img.setAttribute("src", 'http://openweathermap.org/img/w/' + json.list[i].weather[0].icon + '.png');
   }
 
