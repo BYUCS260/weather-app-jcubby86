@@ -76,12 +76,38 @@ a.navbar-brand img{
 
 .section{
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap:wrap;
+  justify-content: left;
 }
 
 .item{
-  padding: 10px 20px;
+  padding: 10px 40px;
   flex: 1;
+}
+
+.section .item{
+  width: 50%;
+}
+
+.section.day {
+  border-top: black solid 2px;
+  margin-bottom: 10px;
+}
+
+.section.day:last-child {
+  margin-bottom: 50px;
+}
+
+.item h3, .item h4, .item h5, .item p {
+  word-break: keep-all;
+  word-wrap: normal;
+  overflow: visible;
+  white-space: nowrap;
+}
+
+#forecastResults h2{
+  text-decoration: underline;
+  margin-bottom: 20px;
 }
 
 
@@ -111,19 +137,19 @@ a.navbar-brand img{
 }
 
 /* Tablet Styles */
-@media only screen and (min-width: 401px) and (max-width: 960px) {
-  #forecastResults .item {
-    width:25%
+@media only screen and (min-width: 401px) and (max-width: 991px) {
+  .section .item {
+    flex: 0;
   }
 }
 
 /* Desktop Styles */
-@media only screen and (min-width: 961px) {
+@media only screen and (min-width: 992px) {
   .content{
-      width: 960px;
+      max-width: 990px;
       margin: 0 auto;
   }
-  #forecastResults .item {
-    width:12.5%
+  .section .item {
+    flex: 0;
   }
 }
