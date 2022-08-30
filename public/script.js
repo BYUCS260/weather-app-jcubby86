@@ -1,4 +1,4 @@
-const APIKEY = '***REMOVED***';
+const APIKEY = 'bad';
 
 function addCurrentWeather(json) {
   const weatherResults = document.getElementById("weatherResults");
