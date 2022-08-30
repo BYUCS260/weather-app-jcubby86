@@ -18,7 +18,7 @@ function addCurrentWeather(json) {
 
   let results = '';
   for (let i = 0; i < json.weather.length; i++) {
-    item.appendChild(document.createElement("img")).setAttribute('src', 'http://openweathermap.org/img/w/' + json.weather[i].icon + '.png');
+    item.appendChild(document.createElement("img")).setAttribute('src', 'https://openweathermap.org/img/w/' + json.weather[i].icon + '.png');
 
     results += json.weather[i].main + ' - ' + json.weather[i].description
     if (i !== json.weather.length - 1) {
@@ -53,7 +53,7 @@ function addForecast(json) {
     item.appendChild(document.createElement("h4")).innerHTML = "Temp: " + Math.round(json.list[i].main.temp) + ' &deg;F';
     item.appendChild(document.createElement("h4")).innerHTML = "Feels like: " + Math.round(json.list[i].main.feels_like) + ' &deg;F';
     item.appendChild(document.createElement("h4")).innerHTML = "Humidity: " + json.list[i].main.humidity + "%";
-    item.appendChild(document.createElement("img")).setAttribute("src", 'http://openweathermap.org/img/w/' + json.list[i].weather[0].icon + '.png');
+    item.appendChild(document.createElement("img")).setAttribute("src", 'https://openweathermap.org/img/w/' + json.list[i].weather[0].icon + '.png');
 
   }
 
@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
       return;
     console.log(city);
 
-    const currentWeatherURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + ",US&units=imperial" + "&APPID=" + APIKEY;
+    const currentWeatherURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + ",US&units=imperial" + "&APPID=" + APIKEY;
     fetch(currentWeatherURL)
       .then(function (response) {
         return response.json();
@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         addCurrentWeather(json);
       });
 
-    const forecastURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + city + ",US&units=imperial" + "&APPID=" + APIKEY;
+    const forecastURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + ",US&units=imperial" + "&APPID=" + APIKEY;
     fetch(forecastURL)
       .then(function (response) {
         return response.json();
